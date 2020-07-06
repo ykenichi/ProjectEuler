@@ -1,7 +1,7 @@
 {
-  "name": "project-euler",
+  "name": "projecteuler",
   "version": "1.0.0",
-  "description": "Solutions in javascript to problems found on projecteuler.net",
+  "description": "Solutions to problems found on projecteuler.net",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",

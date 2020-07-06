@@ -535,7 +535,7 @@ const allFunctions = [
       for (let i = 0; i < series.length; i++) {
         let product = 1;
         for (let j = i; j < i + num && j < series.length; j++) {
-          let curInt = parseInt(series.charAt(j),10);
+          let curInt = parseInt(series.charAt(j), 10);
           if (curInt === 0 || curInt === "NaN") {
             break;
           } else {
@@ -581,7 +581,7 @@ const allFunctions = [
       for (let i = 0; i < dim; i++) {
         let row = [];
         for (let j = 0; j < dim; j++) {
-          row.push(parseInt(rawGrid[i * dim + j],10));
+          row.push(parseInt(rawGrid[i * dim + j], 10));
         }
         grid.push(row);
       }
@@ -664,7 +664,7 @@ const allFunctions = [
       let rollingSum = 0;
 
       for (let i = 0; i < digits.length; i++) {
-        rollingSum += parseInt(digits[i],10);
+        rollingSum += parseInt(digits[i], 10);
       }
 
       while (Math.floor(rollingSum).toString().length > size) {
@@ -707,7 +707,7 @@ const allFunctions = [
       let digitSum = 0;
 
       for (let d of largeSum) {
-        digitSum += parseInt(d,10);
+        digitSum += parseInt(d, 10);
       }
 
       return digitSum;
@@ -730,7 +730,7 @@ const allFunctions = [
       for (let i = 0; i < triangle.length; i++) {
         let row = triangle[i].split(" ");
         for (let j = 0; j < row.length; j++) {
-          row[j] = parseInt(row[j],10);
+          row[j] = parseInt(row[j], 10);
         }
         tri.push(row);
       }
@@ -763,7 +763,7 @@ const allFunctions = [
       let f = String(bigFactorial(num));
       let digitSum = 0;
       for (let d of f) {
-        digitSum += parseInt(d,10);
+        digitSum += parseInt(d, 10);
       }
       return digitSum;
     }
@@ -842,7 +842,7 @@ const allFunctions = [
     }
   },
   {
-    name: "ThousandDigitFibonacci",
+    name: "thousandDigitFibonacci",
     func: function(n = 1000) {
       let counter = 3;
       let prev1 = BigInt(1);
@@ -854,6 +854,33 @@ const allFunctions = [
         counter++;
       }
       return counter;
+    }
+  },
+  {
+    name: "reciprocalCycles",
+    func: function(d = 1000) {
+      let longestCycle = 0;
+      let result = 0;
+      for (let i = d; i >= 2; i--) {
+        if (longestCycle >= i) {
+          break;
+        }
+        let remainders = new Array(i).fill(0);
+        let value = 1;
+        let position = 0;
+        while (remainders[value] === 0 && value !== 0) {
+          remainders[value] = position++;
+          value = (value * 10) % i;
+        }
+
+        if (position - remainders[value] > longestCycle) {
+          longestCycle = position - remainders[value];
+          result = position;
+          //console.log(position);
+          //console.log(remainders[value]);
+        }
+      }
+      return result;
     }
   }
 ];
