@@ -1,0 +1,64 @@
+body {
+  background: #20262e;
+  padding: 20px;
+  font-family: Helvetica;
+}
+
+#banner-message {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 25px;
+  text-align: left;
+  transition: all 0.2s;
+  margin: 0 auto;
+  width: 75%;
+}
+
+#banner-message.alt {
+  background: #0084ff;
+  color: #fff;
+  margin-top: 40px;
+  width: 200px;
+}
+
+#banner-message.alt button {
+  background: #fff;
+  color: #000;
+}
+
+
+
+.runFunction {
+  align-content: right;
+  background-color: #0084ff;
+  color:white;
+  font-style: bold;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.runFunction:hover {
+  background-color: #58aeff;
+}
+
+ul {
+  padding: 0 0 0 0;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.answerStyle {
+  color:crimson;
+}
+
+.timeStyle {
+  color:grey;
+  font-style: italic;
+  font-size: 16px;
+}
