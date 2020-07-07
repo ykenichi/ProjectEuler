@@ -237,8 +237,8 @@ function nextPermutation(array) {
   return array;
 }
 
-function quadraticPrime(a,b,n){
-  let result = Math.pow(n,2) + (a * n) + b;
+function quadraticPrime(a, b, n) {
+  let result = Math.pow(n, 2) + a * n + b;
   return checkPrime(Math.abs(result));
 }
 
@@ -893,13 +893,13 @@ const allFunctions = [
     func: function() {
       let max = 0;
       let product = 0;
-      for(let a = -1000; a <= 1000; a++){
-        for(let b = -1000; b <= 1000; b++){
+      for (let a = -1000; a <= 1000; a++) {
+        for (let b = -1000; b <= 1000; b++) {
           let n = 0;
-          while(quadraticPrime(a,b,n)){
+          while (quadraticPrime(a, b, n)) {
             n++;
           }
-          if(n > max){
+          if (n > max) {
             product = a * b;
             max = n;
             //console.log(product);
@@ -915,13 +915,28 @@ const allFunctions = [
     func: function(size = 1001) {
       let sum = 1;
       let last = 1;
-      for(let i = 1; i < 2*size-1; i++){
+      for (let i = 1; i < 2 * size - 1; i++) {
         let level = Math.ceil(i / 4) * 2;
         last += level;
         sum += last;
       }
       return sum;
-    } 
+    }
+  },
+  {
+    name: "distinctPowers_ChromeOnly",
+    func: function(a = 100, b = 100) {
+      let combinations = [];
+      for (let i = 2; i <= a; i++) {
+        for (let j = 2; j <= b; j++) {
+          let power = i ** j;
+          if (!combinations.includes(power)) {
+            combinations.push(power);
+          }
+        }
+      }
+      return combinations.length;
+    }
   }
 ];
 
@@ -970,7 +985,7 @@ $(document).ready(function() {
         '_answer">' +
         solution +
         '<label class="timeStyle"> (Took ' +
-        (t1 - t0) +
+        Math.round(t1 - t0) +
         " ms)</label></label>"
     );
   });
