@@ -909,6 +909,19 @@ const allFunctions = [
       }
       return product;
     }
+  },
+  {
+    name: "numberSpiralDiagonals",
+    func: function(size = 1001) {
+      let sum = 1;
+      let last = 1;
+      for(let i = 1; i < 2*size-1; i++){
+        let level = Math.ceil(i / 4) * 2;
+        last += level;
+        sum += last;
+      }
+      return sum;
+    } 
   }
 ];
 
