@@ -237,6 +237,11 @@ function nextPermutation(array) {
   return array;
 }
 
+function quadraticPrime(a,b,n){
+  let result = Math.pow(n,2) + (a * n) + b;
+  return checkPrime(Math.abs(result));
+}
+
 // input values for problem 8
 const p8_series = `
 73167176531330624919225119674426574742355349194934
@@ -881,6 +886,28 @@ const allFunctions = [
         }
       }
       return result;
+    }
+  },
+  {
+    name: "quadraticPrimes",
+    func: function() {
+      let max = 0;
+      let product = 0;
+      for(let a = -1000; a <= 1000; a++){
+        for(let b = -1000; b <= 1000; b++){
+          let n = 0;
+          while(quadraticPrime(a,b,n)){
+            n++;
+          }
+          if(n > max){
+            product = a * b;
+            max = n;
+            //console.log(product);
+            //console.log(max);
+          }
+        }
+      }
+      return product;
     }
   }
 ];
