@@ -242,6 +242,19 @@ function quadraticPrime(a, b, n) {
   return checkPrime(Math.abs(result));
 }
 
+function sumOfPowers(num, pow) {
+  if (num === 1) {
+    return false;
+  }
+  let sum = 0;
+  let n = num;
+  while (n > 0) {
+    sum += Math.pow(n % 10, pow);
+    n = Math.floor(n / 10);
+  }
+  return sum === num;
+}
+
 // input values for problem 8
 const p8_series = `
 73167176531330624919225119674426574742355349194934
@@ -936,6 +949,19 @@ const allFunctions = [
         }
       }
       return combinations.length;
+    }
+  },
+  {
+    name: "digitFifthPowers",
+    func: function(pow = 5) {
+      let sum = 0;
+      let upperLimit = pow * Math.pow(9, pow);
+      for (let i = 0; i < upperLimit - 100; i++) {
+        if (sumOfPowers(i, pow)) {
+          sum += i;
+        }
+      }
+      return sum;
     }
   }
 ];
