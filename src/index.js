@@ -963,6 +963,22 @@ const allFunctions = [
       }
       return sum;
     }
+  },
+  {
+    name: "coinSums",
+    func: function(target = 200){
+      
+      let denominations = [1,2,5,10,20,50,100,200];
+      let ways = new Array(target+1).fill(0);
+      ways[0] = 1;
+
+      for(let i = 0; i < denominations.length; i++){
+        for(let j = denominations[i]; j <= target; j++){
+          ways[j] += ways[j - denominations[i]];
+        }
+      }
+      return ways[target];
+    }
   }
 ];
 
