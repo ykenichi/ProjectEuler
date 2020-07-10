@@ -1043,6 +1043,24 @@ const allFunctions = [
       }
       return commonDenom/commonNumer;
     }
+  },
+  {
+    name: "digitFactorials",
+    func: function() {
+      let sum = 0;
+      for(let i = 10; i < 99999; i++){
+        let factorialSum = 0;
+        let num = i;
+        while(num > 0){
+          factorialSum += factorial(num % 10);
+          num = Math.floor(num / 10);
+        }
+        if(factorialSum === i){
+          sum += i;
+        }
+      }
+      return sum;
+    }
   }
 ];
 
