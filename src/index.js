@@ -1142,6 +1142,49 @@ const allFunctions = [
       }
       return largestPan;
     }
+  },
+  {
+    name: "integerRightTriangles",
+    func: function(p_limit = 1000) {
+      let maxP = 0;
+      let maxSol = 0;
+      for(let p = 12; p <= p_limit; p++){
+        let solutions = [];
+        for(let a = 1; a < p/2; a++){
+          for(let b = a; a+b < p; b++){
+            let c = p - (a + b);
+            if(Math.pow(a,2) + Math.pow(b,2) === Math.pow(c,2)){
+              let sol = {};
+              sol.a = a;
+              sol.b = b;
+              sol.c = c;
+              solutions.push(sol);
+            }
+          }
+        }
+        if(solutions.length > maxSol){
+          maxSol = solutions.length;
+          maxP = p;
+        }
+      }
+      return maxP;
+    }
+  },
+  {
+      name: "champernownesConstant",
+      func: function(limit = 1000000){
+        let fractPart = "";
+        let count = 1;
+        while(fractPart.length < limit){
+          fractPart = fractPart.concat(count.toString());
+          count++;
+        }
+        let digitProd = 1;
+        for(let i = 1; i <= limit; i *= 10){
+          digitProd *= parseInt(fractPart.charAt(i - 1),10);
+        }
+        return digitProd;
+      }
   }
 ];
 
