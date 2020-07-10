@@ -1061,6 +1061,30 @@ const allFunctions = [
       }
       return sum;
     }
+  },
+  {
+    name: "circularPrimes",
+    func: function(limit = 1000000) {
+      let circPrimes = [];
+      for(let i = 2; i < limit; i++){
+        if(!checkPrime(i)){
+          continue;
+        }
+        let rotateNum = String(i);
+        let isCircP = true;
+        for(let j = 0; j < rotateNum.length; j++){
+          if(!checkPrime(parseInt(rotateNum,10))){
+            isCircP = false;
+            break;
+          }
+          rotateNum = rotateNum.slice(1,rotateNum.length) + rotateNum.slice(0,1);
+        }
+        if(isCircP){
+          circPrimes.push(i);
+        }
+      }
+      return circPrimes.length;
+    }
   }
 ];
 
