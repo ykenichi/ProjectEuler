@@ -1121,6 +1121,27 @@ const allFunctions = [
       }
       return sum;
     }
+  },
+  {
+    name: "pandigitalMultiples",
+    func: function() {
+      let largestPan = 0;
+      for(let i = 1; i < 10000; i++){
+        let allProds = "";
+        let n = 1;
+        while(allProds.length < 9){
+          allProds = allProds.concat(String(i * n));
+          n++;
+        }
+        if(allProds.split("").sort((a,b) => a > b ? 1 : -1).join("") === "123456789"){
+          console.log(allProds);
+          if(parseInt(allProds,10) > largestPan){
+            largestPan = parseInt(allProds,10);
+          }
+        }
+      }
+      return largestPan;
+    }
   }
 ];
 
