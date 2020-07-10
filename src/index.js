@@ -255,6 +255,14 @@ function sumOfPowers(num, pow) {
   return sum === num;
 }
 
+function greatestCommonDivisor(a,b){
+  for(let i = Math.min(a,b); i >= 0; i--){
+    if(a % i === 0 && b % i === 0){
+      return i;
+    }
+  }
+}
+
 // input values for problem 8
 const p8_series = `
 73167176531330624919225119674426574742355349194934
@@ -966,18 +974,74 @@ const allFunctions = [
   },
   {
     name: "coinSums",
-    func: function(target = 200){
-      
-      let denominations = [1,2,5,10,20,50,100,200];
-      let ways = new Array(target+1).fill(0);
+    func: function(target = 200) {
+      let denominations = [1, 2, 5, 10, 20, 50, 100, 200];
+      let ways = new Array(target + 1).fill(0);
       ways[0] = 1;
 
-      for(let i = 0; i < denominations.length; i++){
-        for(let j = denominations[i]; j <= target; j++){
+      for (let i = 0; i < denominations.length; i++) {
+        for (let j = denominations[i]; j <= target; j++) {
           ways[j] += ways[j - denominations[i]];
         }
       }
       return ways[target];
+    }
+  },
+  {
+    name: "pandigitalProducts",
+    func: function() {
+      let pandigitalProducts = [];
+      for (let i = 1; i < 9999; i++) {
+        for (let j = 1; j < 99; j++) {
+          let product = i * j;
+          let allDigits = String(i) + String(j) + String(product);
+          if (allDigits.length !== 9) {
+            continue;
+          }
+          let digitArr = allDigits.split("").sort((a,b) => a > b ? 1 : -1).join("");
+          if (digitArr === "123456789") {
+            let pan = {};
+            pan.mult1 = i;
+            pan.mult2 = j;
+            pan.prod = product;
+            if(!pandigitalProducts.some((e) => (e.mult1 === pan.mult2 && e.mult2 === pan.mult1) || e.prod === pan.prod)){
+              pandigitalProducts.push(pan);
+            }
+          }
+        }
+      }
+
+      let sum = 0;
+      for(let i = 0; i < pandigitalProducts.length; i++){
+        sum += pandigitalProducts[i].prod;
+      }
+      console.log(pandigitalProducts);
+      return sum;
+    }
+  },
+  {
+    name: "digitalCancellingFractions",
+    func: function() {
+      let commonDenom = 1;
+      let commonNumer = 1;
+      for(let i = 10; i < 99; i++){
+        for(let j = 10; j < 99; j++){
+          let frac = 0;
+          let simpleFrac = 0;
+          if(i === j){
+            continue;
+          }
+          else if(i % 10 === Math.floor(j / 10)){
+            frac = i / j;
+            simpleFrac = Math.floor(i / 10) / (j % 10);
+            if(frac === simpleFrac){
+              commonNumer *= i;
+              commonDenom *= j;
+            }
+          }
+        }
+      }
+      return commonDenom/commonNumer;
     }
   }
 ];
