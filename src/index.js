@@ -255,12 +255,11 @@ function sumOfPowers(num, pow) {
   return sum === num;
 }
 
-function greatestCommonDivisor(a,b){
-  for(let i = Math.min(a,b); i >= 0; i--){
-    if(a % i === 0 && b % i === 0){
-      return i;
-    }
+function checkPalindrome(input){
+  if(typeof input !== 'string'){
+    input = input.toString();
   }
+  return input === input.split("").reverse().join("");
 }
 
 // input values for problem 8
@@ -1084,6 +1083,20 @@ const allFunctions = [
         }
       }
       return circPrimes.length;
+    }
+  },
+  {
+    name: "doubleBasePalindromes",
+    func: function(limit = 1000000) {
+      let sum = 0;
+      for(let i = 1; i < limit; i++){
+        let baseTen = i.toString();
+        let baseTwo = i.toString(2);
+        if(checkPalindrome(baseTen) && checkPalindrome(baseTwo)){
+          sum += i;
+        }
+      }
+      return sum;
     }
   }
 ];
