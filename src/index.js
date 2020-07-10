@@ -17,7 +17,7 @@ function readFiles() {
 function checkPrime(num) {
   if (num === 2) {
     return true;
-  } else if (num % 2 === 0) {
+  } else if (num % 2 === 0 || num < 2) {
     return false;
   }
 
@@ -1093,6 +1093,29 @@ const allFunctions = [
         let baseTen = i.toString();
         let baseTwo = i.toString(2);
         if(checkPalindrome(baseTen) && checkPalindrome(baseTwo)){
+          sum += i;
+        }
+      }
+      return sum;
+    }
+  },
+  {
+    name: "truncatablePrimes",
+    func: function() {
+      let sum = 0;
+      for(let i = 11; i < 1000000; i++){
+        let leftTrunc = i.toString();
+        let rightTrunc = i.toString();
+        let isTruncPrime = true;
+        for(let j = 0; j < i.toString().length; j++){
+          if(!checkPrime(parseInt(leftTrunc,10)) || !checkPrime(parseInt(rightTrunc,10))){
+            isTruncPrime = false;
+            break;
+          }
+          leftTrunc = leftTrunc.slice(0,leftTrunc.length - 1);
+          rightTrunc = rightTrunc.slice(1,rightTrunc.length);
+        }
+        if(isTruncPrime){
           sum += i;
         }
       }
